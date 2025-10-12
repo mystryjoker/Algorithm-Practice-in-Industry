@@ -1,0 +1,23 @@
+name: test_deepseek_config
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-deepseek:
+    runs-on: ubuntu-latest
+    env:
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.8"
+          
+      - name: Install requests
+        run: pip install requests
+        
+      - name: Test DeepSeek API configuration
+        run: python test_deepseek.py

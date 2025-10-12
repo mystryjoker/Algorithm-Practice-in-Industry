@@ -1,0 +1,23 @@
+name: test_feishu_config
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-feishu:
+    runs-on: ubuntu-latest
+    env:
+      FEISHU_URL: ${{ secrets.FEISHU_URL }}
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.8"
+          
+      - name: Install requests
+        run: pip install requests
+        
+      - name: Test Feishu configuration
+        run: python test_feishu.py
